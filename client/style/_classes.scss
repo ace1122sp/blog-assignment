@@ -1,1 +1,10 @@
 @import 'custom';
+
+.height-4 {
+  height: 4rem;
+}
+
+.no-outline:focus {
+  box-shadow: none;
+  border: none;
+}

@@ -15,6 +15,12 @@
     "setupFilesAfterEnv": [
       "./client/setupTests.js"
     ],
+    "roots": [
+      "."
+    ],
+    "modulePaths": [
+      "."
+    ],
     "moduleNameMapper": {
       "^.+\\.(css|less|scss)$": "babel-jest"
     },
