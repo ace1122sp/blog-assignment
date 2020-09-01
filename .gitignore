@@ -105,3 +105,6 @@ dist
 
 # React build file
 public/client.bundle.js
+
+#todo file
+.todo.md
