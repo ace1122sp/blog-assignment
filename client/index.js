@@ -1,12 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+import 'bootstrap';
+import App from './components/app';
 
 const root = document.getElementById('root');
-
-const App = () => (
-  <main>
-    <></>
-  </main>
-);
 
 render(<App />, root);
