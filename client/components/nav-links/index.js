@@ -4,7 +4,7 @@ import Link from '../link';
 
 const NavLinks = ({ data }) => {
   return (
-    <nav className='nav nav-pills flex-row flex-md-column'>
+    <nav className='nav nav-pills flex-row flex-lg-column'>
       {data.map((i, index) => (
         <Link key={index} {...i} />
       ))}

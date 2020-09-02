@@ -4,7 +4,7 @@ import Notification from 'client/components/notification';
 const Header = () => {
   return (
     <div className='row'>
-      <header className='col-sm-12 col-md-9 d-flex flex-column offset-md-3 my-1'>
+      <header className='col-12 col-lg-9 d-flex flex-column offset-lg-3 my-1'>
         <h2 className='font-weight-bold'>Welcome to My Blog</h2>
         <Notification />
         <div className='d-flex justify-content-end'>

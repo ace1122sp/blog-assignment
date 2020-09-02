@@ -8,7 +8,7 @@ const Notification = () => {
   return (
     <div
       onClick={() => setShowingMessage(false)}
-      className='d-flex justify-content-between height-4 bg-secondary my-1 pl-2'
+      className='d-flex justify-content-between height-4 bg-secondary my-1  pl-2 pl-lg-3'
     >
       <span className='align-self-center'>
         Container for showing application messages
