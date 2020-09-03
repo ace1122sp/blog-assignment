@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { smokeTest } from 'client/utils/testing';
 import NavLinks from '.';
 
@@ -10,6 +11,8 @@ const generateData = (numOfLinks) => {
   return data;
 };
 
-it('renders without crashing', () => {
-  smokeTest(NavLinks, { data: generateData(3) });
+describe('NavLinks', () => {
+  it('renders without crashing', () => {
+    smokeTest(NavLinks, { data: generateData(3) });
+  });
 });

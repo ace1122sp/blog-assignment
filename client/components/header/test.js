@@ -1,6 +1,9 @@
+/* eslint-disable no-undef */
 import { smokeTest } from '../../utils/testing';
 import Header from '.';
 
-it('renders without crashing', () => {
-  smokeTest(Header);
+describe('Header', () => {
+  it('renders without crashing', () => {
+    smokeTest(Header);
+  });
 });
