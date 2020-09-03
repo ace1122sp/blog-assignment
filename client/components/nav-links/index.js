@@ -15,7 +15,7 @@ const NavLinks = ({ data }) => {
 NavLinks.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      to: PropTypes.string,
+      onClick: PropTypes.func,
       description: PropTypes.string.isRequired,
       colorClass: PropTypes.string,
     })

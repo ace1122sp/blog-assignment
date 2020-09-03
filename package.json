@@ -38,6 +38,7 @@
   "homepage": "https://github.com/ace1122sp/react-boilerplate#readme",
   "dependencies": {
     "autoprefixer": "^9.8.6",
+    "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",

@@ -35,6 +35,10 @@
   display: block;
 }
 
+.bg-smoke-white {
+  background-color: $smoke-white;
+}
+
 @media (max-width: 576px) {
   .small-img {
     width: 40px;

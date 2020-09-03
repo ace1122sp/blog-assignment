@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Link = ({ to, description, colorClass }) => {
+const Link = ({ description, colorClass, onClick }) => {
   return (
     <a
       className={`flex-sm-fill text-sm-start nav-link ${colorClass}`}
-      href={to}
+      onClick={onClick}
+      href='#'
     >
       {description}
     </a>
@@ -13,13 +14,12 @@ const Link = ({ to, description, colorClass }) => {
 };
 
 Link.propTypes = {
-  to: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   colorClass: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 Link.defaultProps = {
-  to: '#',
   colorClass: 'text-dark',
 };
 
