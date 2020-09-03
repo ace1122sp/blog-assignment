@@ -19,17 +19,6 @@ const Modal = ({ confirm, close }) => {
     close();
   };
 
-  const renderButtons = () => {
-    const buttons = [
-      { label: 'Post', handler: handleSubmit },
-      { label: 'Cancel', handler: close },
-    ];
-
-    return buttons.map(({ label, handler }, i) => (
-      <Button key={i} onClick={handler} label={label} />
-    ));
-  };
-
   return (
     <div
       className='modal custom-modal'
@@ -78,7 +67,10 @@ const Modal = ({ confirm, close }) => {
               </FormInputWrapper>
             </form>
           </div>
-          <div className='modal-footer'>{renderButtons()}</div>
+          <div className='modal-footer'>
+            <Button label='Post' handler={handleSubmit} />
+            <Button label='Cancel' handler={close} />
+          </div>
         </div>
       </div>
     </div>

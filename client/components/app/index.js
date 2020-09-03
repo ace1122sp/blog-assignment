@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../header';
+import Header from '../header/container';
 import Navbar from '../navbar';
 import Content from '../content/container';
 import './style.scss';
