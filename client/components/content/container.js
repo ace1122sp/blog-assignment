@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import Content from '.';
-import { getAllPosts, getPostsByCategory } from 'client/redux/posts/actions';
+import {
+  getAllPosts,
+  getPostsByCategory,
+  deletePost,
+} from 'client/redux/posts/actions';
 
 const mapStateToProps = ({ posts }) => ({
   posts,
@@ -9,6 +13,7 @@ const mapStateToProps = ({ posts }) => ({
 const mapDispatchToProps = (dispatch) => ({
   getAllPosts: () => dispatch(getAllPosts()),
   getPostsByCategory: (queries) => dispatch(getPostsByCategory(queries)),
+  deletePost: (id) => dispatch(deletePost(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

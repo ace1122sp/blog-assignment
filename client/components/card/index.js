@@ -6,9 +6,11 @@ import Button from '../button';
 const renderImages = (images = [1, 2, 3]) =>
   images.map((i) => <img key={i} className='large-img m-1' />);
 
-const Card = ({ id, title, text, createdAt, bgClass }) => {
+const Card = ({ id, title, text, createdAt, bgClass, handleDelete }) => {
   const renderButtons = () => {
-    return ['edit', 'delete'].map((btn) => <Button key={btn} label={btn} />);
+    return ['edit', 'delete'].map((btn) => (
+      <Button key={btn} label={btn} handler={() => handleDelete(id)} />
+    ));
   };
 
   return (
@@ -37,6 +39,7 @@ Card.propTypes = {
   text: PropTypes.string,
   createdAt: PropTypes.string,
   bgClass: PropTypes.string,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
