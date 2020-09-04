@@ -7,7 +7,9 @@ const posts = (state = [], { type, data, id }) => {
     case ADD_POST:
       return [...state, data];
     case EDIT_POST:
-      return state.map((post) => (post.id === data.id ? data : post));
+      return state.map((post) =>
+        post.id === data.id ? Object.assign({}, post, data) : post
+      );
     case REMOVE_POST:
       return state.filter((post) => post.id !== id);
     default:

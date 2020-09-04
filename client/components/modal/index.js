@@ -9,13 +9,20 @@ const categoryOptions = [1, 2, 3].map((num) => (
   <option key={num} value={num}>{`Category ${num}`}</option>
 ));
 
-const Modal = ({ confirm, close, initTitle, initCategory, initText }) => {
+const Modal = ({
+  confirm,
+  close,
+  initTitle,
+  initCategory,
+  initText,
+  disableCategory,
+}) => {
   const [categoryId, setCategoryId] = useState(initCategory);
   const [title, setTitle] = useState(initTitle);
   const [text, setText] = useState(initText);
 
   const handleSubmit = () => {
-    confirm({ title, categoryId, text });
+    confirm({ title, categoryId: parseInt(categoryId), text });
     close();
   };
 
@@ -39,6 +46,7 @@ const Modal = ({ confirm, close, initTitle, initCategory, initText }) => {
                 <select
                   className='custom-select'
                   id='category-input'
+                  disabled={disableCategory}
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
                 >
@@ -83,12 +91,14 @@ Modal.propTypes = {
   initTitle: PropTypes.string,
   initCategory: PropTypes.oneOf([1, 2, 3]),
   initText: PropTypes.string,
+  disableCategory: PropTypes.bool.isRequired,
 };
 
 Modal.defaultProps = {
   initTitle: '',
   initCategory: 1,
   initText: '',
+  disableCategory: false,
 };
 
 export default Modal;

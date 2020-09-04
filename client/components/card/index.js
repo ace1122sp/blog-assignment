@@ -52,6 +52,7 @@ const Card = ({
           initTitle={title}
           initCategory={categoryId}
           initText={text}
+          disableCategory={true}
         />
       )}
     </div>

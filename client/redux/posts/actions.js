@@ -5,8 +5,6 @@ import { setFetchingStatus } from 'client/redux/fetching/actions';
 import { POSTS_URL, POSTS_BY_CATEGORY_URL } from 'client/constants/urls';
 import { LOAD_POSTS, ADD_POST, EDIT_POST, REMOVE_POST } from './constants';
 
-// TODO refactor shared thunk blocks
-
 const loadPosts = (data) => ({
   type: LOAD_POSTS,
   data,
@@ -24,14 +22,10 @@ const removePost = (id) => ({
   id,
 });
 
-const _getPosts = (url) => (dispatch) => {
+const requestHandlerWrapper = (requestHandler, dispatch) => {
   dispatch(setFetchingStatus(true));
 
-  return axios
-    .get(url)
-    .then((res) => {
-      dispatch(loadPosts(res.data.resultData));
-    })
+  return requestHandler(dispatch)
     .catch((err) => {
       console.error(err);
       dispatch(reportError());
@@ -41,57 +35,38 @@ const _getPosts = (url) => (dispatch) => {
     });
 };
 
-export const getAllPosts = () => _getPosts(POSTS_URL);
+const _getPosts = (url) => (dispatch) =>
+  axios.get(url).then((res) => {
+    dispatch(loadPosts(res.data.resultData));
+  });
+
+const getPosts = (url) => (dispatch) =>
+  requestHandlerWrapper(_getPosts(url), dispatch);
+
+export const getAllPosts = () => getPosts(POSTS_URL);
 export const getPostsByCategory = (queries) =>
-  _getPosts(`${POSTS_BY_CATEGORY_URL}${getQueryString(queries)}`);
+  getPosts(`${POSTS_BY_CATEGORY_URL}${getQueryString(queries)}`);
 
-export const createPost = (data) => (dispatch) => {
-  dispatch(setFetchingStatus(true));
+const _createPost = (data) => (dispatch) =>
+  axios.post(POSTS_URL, data).then((res) => {
+    dispatch(addPost(res.data));
+  });
 
-  return axios
-    .post(POSTS_URL, data)
-    .then((res) => {
-      dispatch(addPost(res.data));
-    })
-    .catch((err) => {
-      console.error(err);
-      dispatch(reportError());
-    })
-    .finally(() => {
-      dispatch(setFetchingStatus(false));
-    });
-};
+export const createPost = (data) => (dispatch) =>
+  requestHandlerWrapper(_createPost(data), dispatch);
 
-export const putPost = (data) => (dispatch) => {
-  dispatch(setFetchingStatus(true));
+const _putPost = (data) => (dispatch) =>
+  axios.put(`${POSTS_URL}/${data.id}`, data).then(() => {
+    dispatch(editPost(data));
+  });
 
-  return axios
-    .put(`${POSTS_URL}/${data.id}`, data)
-    .then(() => {
-      dispatch(editPost(data));
-    })
-    .catch((err) => {
-      console.error(err);
-      dispatch(reportError());
-    })
-    .finally(() => {
-      dispatch(setFetchingStatus(false));
-    });
-};
+export const putPost = (data) => (dispatch) =>
+  requestHandlerWrapper(_putPost(data), dispatch);
 
-export const deletePost = (id) => (dispatch) => {
-  dispatch(setFetchingStatus(true));
+const _deletePost = (id) => (dispatch) =>
+  axios.delete(`${POSTS_URL}/${id}`).then(() => {
+    dispatch(removePost(id));
+  });
 
-  return axios
-    .delete(`${POSTS_URL}/${id}`)
-    .then(() => {
-      dispatch(removePost(id));
-    })
-    .catch((err) => {
-      console.error(err);
-      dispatch(reportError());
-    })
-    .finally(() => {
-      dispatch(setFetchingStatus(false));
-    });
-};
+export const deletePost = (id) => (dispatch) =>
+  requestHandlerWrapper(_deletePost(id), dispatch);
