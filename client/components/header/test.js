@@ -4,6 +4,6 @@ import Header from '.';
 
 describe('Header', () => {
   it('renders without crashing', () => {
-    smokeTest(Header);
+    smokeTest(Header, { createPost: () => {} });
   });
 });

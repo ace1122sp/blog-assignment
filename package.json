@@ -7,8 +7,8 @@
     "start": "webpack-dev-server --hot --mode development",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint ./client",
+    "lint:fix": "eslint --fix ./client",
     "test": "jest"
   },
   "jest": {

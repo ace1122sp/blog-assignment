@@ -9,7 +9,7 @@ const mockData = {
   text: 'test text',
   createdAt: '1-1-2020',
   editPost: () => {},
-  delete: () => {},
+  deletePost: () => {},
 };
 
 describe('Card', () => {
