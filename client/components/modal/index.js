@@ -9,13 +9,13 @@ const categoryOptions = [1, 2, 3].map((num) => (
   <option key={num} value={num}>{`Category ${num}`}</option>
 ));
 
-const Modal = ({ confirm, close }) => {
-  const [category, setCategory] = useState(1);
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
+const Modal = ({ confirm, close, initTitle, initCategory, initText }) => {
+  const [categoryId, setCategoryId] = useState(initCategory);
+  const [title, setTitle] = useState(initTitle);
+  const [text, setText] = useState(initText);
 
   const handleSubmit = () => {
-    confirm({ title, category, text });
+    confirm({ title, categoryId, text });
     close();
   };
 
@@ -39,8 +39,8 @@ const Modal = ({ confirm, close }) => {
                 <select
                   className='custom-select'
                   id='category-input'
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  value={categoryId}
+                  onChange={(e) => setCategoryId(e.target.value)}
                 >
                   {categoryOptions}
                 </select>
@@ -80,6 +80,15 @@ const Modal = ({ confirm, close }) => {
 Modal.propTypes = {
   confirm: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,
+  initTitle: PropTypes.string,
+  initCategory: PropTypes.oneOf([1, 2, 3]),
+  initText: PropTypes.string,
+};
+
+Modal.defaultProps = {
+  initTitle: '',
+  initCategory: 1,
+  initText: '',
 };
 
 export default Modal;

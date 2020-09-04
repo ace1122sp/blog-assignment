@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import NavLinks from '../nav-links';
 import Card from '../card';
 
-const Content = ({ posts, getAllPosts, getPostsByCategory, deletePost }) => {
+const Content = ({
+  posts,
+  getAllPosts,
+  getPostsByCategory,
+  editPost,
+  deletePost,
+}) => {
   useEffect(() => {
     getAllPosts();
   }, []);
@@ -14,15 +20,17 @@ const Content = ({ posts, getAllPosts, getPostsByCategory, deletePost }) => {
   }));
 
   const renderPosts = () =>
-    posts.map(({ id, title, text, createdAt }, i) => (
+    posts.map(({ id, title, categoryId, text, createdAt }, i) => (
       <Card
         key={id}
         id={id}
         title={title}
+        categoryId={categoryId}
         text={text}
         createdAt={createdAt}
         bgClass={i % 2 ? 'bg-smoke-white' : undefined}
-        handleDelete={deletePost}
+        editPost={editPost}
+        deletePost={deletePost}
       />
     ));
 
@@ -41,6 +49,7 @@ Content.propTypes = {
   posts: PropTypes.array.isRequired,
   getAllPosts: PropTypes.func.isRequired,
   getPostsByCategory: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
 };
 

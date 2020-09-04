@@ -1,4 +1,4 @@
-import { LOAD_POSTS, ADD_POST, REMOVE_POST } from './constants';
+import { LOAD_POSTS, ADD_POST, EDIT_POST, REMOVE_POST } from './constants';
 
 const posts = (state = [], { type, data, id }) => {
   switch (type) {
@@ -6,6 +6,8 @@ const posts = (state = [], { type, data, id }) => {
       return data;
     case ADD_POST:
       return [...state, data];
+    case EDIT_POST:
+      return state.map((post) => (post.id === data.id ? data : post));
     case REMOVE_POST:
       return state.filter((post) => post.id !== id);
     default:

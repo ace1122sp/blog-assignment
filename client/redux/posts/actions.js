@@ -3,7 +3,7 @@ import { getQueryString } from 'client/utils/misc';
 import { reportError } from 'client/redux/errors/actions';
 import { setFetchingStatus } from 'client/redux/fetching/actions';
 import { POSTS_URL, POSTS_BY_CATEGORY_URL } from 'client/constants/urls';
-import { LOAD_POSTS, ADD_POST, REMOVE_POST } from './constants';
+import { LOAD_POSTS, ADD_POST, EDIT_POST, REMOVE_POST } from './constants';
 
 // TODO refactor shared thunk blocks
 
@@ -16,6 +16,8 @@ const addPost = (data) => ({
   type: ADD_POST,
   data,
 });
+
+const editPost = (data) => ({ type: EDIT_POST, data });
 
 const removePost = (id) => ({
   type: REMOVE_POST,
@@ -50,6 +52,23 @@ export const createPost = (data) => (dispatch) => {
     .post(POSTS_URL, data)
     .then((res) => {
       dispatch(addPost(res.data));
+    })
+    .catch((err) => {
+      console.error(err);
+      dispatch(reportError());
+    })
+    .finally(() => {
+      dispatch(setFetchingStatus(false));
+    });
+};
+
+export const putPost = (data) => (dispatch) => {
+  dispatch(setFetchingStatus(true));
+
+  return axios
+    .put(`${POSTS_URL}/${data.id}`, data)
+    .then(() => {
+      dispatch(editPost(data));
     })
     .catch((err) => {
       console.error(err);
