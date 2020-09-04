@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --mode development",
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production && gzip public/client.bundle.js",
+    "build": "webpack --mode production",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest"
