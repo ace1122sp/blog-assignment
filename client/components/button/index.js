@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Button = ({ handler, label }) => (
   <button
     onClick={handler}
-    className='btn btn-primary btn-sm fixed-btn-width mr-1 text-center'
+    className='btn btn-primary btn-sm fixed-btn-width mr-1 text-center mb-1 mb-md-0'
   >
     {label}
   </button>
